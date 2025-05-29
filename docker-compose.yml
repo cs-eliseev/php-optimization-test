@@ -32,7 +32,7 @@ services:
       - ./tests:/var/www/html
 
   php8_3:
-    image: php:8.3.0-fpm
+    image: php:8.3-fpm
     container_name: my-php8_3-container
     ports:
       - "9026:80"
@@ -40,7 +40,7 @@ services:
       - ./tests:/var/www/html
 
   php8_4:
-    image: php:8.4.1-fpm
+    image: php:8.4-fpm
     container_name: my-php8_4-container
     ports:
       - "9027:80"
