@@ -1,0 +1,48 @@
+services:
+  ph7_4:
+    image: php:7.4-fpm
+    container_name: my-php7_4-container
+    ports:
+      - "9022:80"
+    volumes:
+      - ./tests:/var/www/html
+
+  php8_0:
+    image: php:8.0-fpm
+    container_name: my-php8_0-container
+    ports:
+      - "9023:80"
+    volumes:
+      - ./tests:/var/www/html
+
+  php8_1:
+    image: php:8.1.25-fpm
+    container_name: my-php8_1-container
+    ports:
+      - "9024:80"
+    volumes:
+      - ./tests:/var/www/html
+
+  php8_2:
+    image: php:8.2.12-fpm
+    container_name: my-php8_2-container
+    ports:
+      - "9025:80"
+    volumes:
+      - ./tests:/var/www/html
+
+  php8_3:
+    image: php:8.3.0-fpm
+    container_name: my-php8_3-container
+    ports:
+      - "9026:80"
+    volumes:
+      - ./tests:/var/www/html
+
+  php8_4:
+    image: php:8.4.1-fpm
+    container_name: my-php8_4-container
+    ports:
+      - "9027:80"
+    volumes:
+      - ./tests:/var/www/html
