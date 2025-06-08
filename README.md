@@ -66,4 +66,5 @@ docker exec my-php8_0-container php test.php
 ### Test Structure
 The `tests` directory contains various test scenarios:
 - `convert_simple_types/` - Tests for type conversion performance
+- `curly_braces/` - Tests for curly braces performance
 - `foreach_bug/` - Tests for foreach loop optimization
