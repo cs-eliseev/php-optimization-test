@@ -16,28 +16,6 @@ for ($i = 0; $i < $iterations; $i++) {
 
 $ts = microtime(true);
 foreach ($collection as $i) {
-    $test = $i;
-}
-print('Base');
-showTs($ts);
-
-$ts = microtime(true);
-foreach ($collection as $i) {
-    $test = (string) $i;
-}
-print('String');
-showTs($ts);
-
-$ts = microtime(true);
-foreach ($collection as $i) {
     $test = (int) $i;
 }
-print('Integer');
-showTs($ts);
-
-$ts = microtime(true);
-foreach ($collection as $i) {
-    $test = (float) $i;
-}
-print('Float');
 showTs($ts);
