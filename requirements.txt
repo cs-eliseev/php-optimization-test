@@ -1,0 +1,4 @@
+rich==13.7.0
+pandas==2.2.3
+openpyxl==3.1.2
+pyarrow==15.0.0 
