@@ -4,33 +4,37 @@ English | [Русский](README.ru_RU.md)
 
 This project contains a collection of PHP scripts designed to test and analyze performance across different PHP versions. It allows you to compare execution time and memory usage of various PHP operations.
 
-### Features
-- Collection of performance test scripts
+## Features
+- Collection of performance test PHP scripts
 - Docker-based testing environment
 - Support for PHP versions from 7.4 to 8.4
-- Various test scenarios including:
-  - Type conversion tests
-  - Array operations
-  - DTO (Data Transfer Object) performance
-  - Foreach loop optimization
-  - Array vs DTO comparisons
+- Various test scenarios
+- Exporting results to various formats (CSV, Excel, JSON)
 
-### Requirements
+## Requirements
 - Docker and Docker Compose
-- PHP 7.4 or higher (for local development)
-- Git
+- Python 3.8 or higher
+- Bash
 
-### Installation
+## Installation
+
+1. Clone the repository:
 ```bash
-git clone [repository-url]
-cd [repository-name]
+git clone <repository-url>
+cd <repository-directory>
 ```
 
-### Running Tests
-The project uses Docker containers for testing different PHP versions. To start the test environment:
+2. Run the initialization script:
+```bash
+./init_venv.sh
+```
+
+## Usage
+
+### Run all tests
 
 ```bash
-docker-compose up -d
+./run_report.sh
 ```
 
 This will start containers for PHP versions:
@@ -41,26 +45,57 @@ This will start containers for PHP versions:
 - PHP 8.3 (port 9026)
 - PHP 8.4 (port 9027)
 
-Each container mounts the `tests` directory, allowing you to run the same tests across different PHP versions.
+### Run tests in a specific directory
 
-### Container Usage Examples
-
-#### Copying Scripts to Container
 ```bash
-# Copy script to PHP 7.4 container
-docker cp tests/foreach_bug/dto_collection.php my-php7_4-container:test.php
-
-# Copy script to PHP 8.0 container
-docker cp tests/foreach_bug/dto_collection.php my-php8_0-container:test.php
+./run_report.sh path/to/test/directory
 ```
 
-#### Running Scripts in Container
-```bash
-# Run script in PHP 7.4 container
-docker exec my-php7_4-container php test.php
+### Export results
 
-# Run script in PHP 8.0 container
-docker exec my-php8_0-container php test.php
+```bash
+# Export to CSV
+./run_report.sh path/to/test/directory --csv results.csv
+
+# Export to Excel
+./run_report.sh path/to/test/directory --excel results.xlsx
+
+# Export to JSON
+./run_report.sh path/to/test/directory --json results.json
+
+# Combined export
+./run_report.sh path/to/test/directory --csv results.csv --excel results.xlsx --json results.json
+```
+
+## Results Structure
+
+Results are grouped by directories and include:
+- Execution time (ts, sec)
+- Memory usage (memory, GB)
+
+### JSON Format
+
+```json
+{
+    "directory_name": {
+        "test_file.php": {
+            "ts": {
+                "7.4": "0.123",
+                "8.0": "0.120",
+                "8.1": "0.118",
+                "8.2": "0.115",
+                "8.3": "0.112"
+            },
+            "memory": {
+                "7.4": "0.5",
+                "8.0": "0.48",
+                "8.1": "0.45",
+                "8.2": "0.42",
+                "8.3": "0.40"
+            }
+        }
+    }
+}
 ```
 
 ### Test Structure
