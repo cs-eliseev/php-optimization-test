@@ -1,20 +1,15 @@
 <?php
 
-ini_set('memory_limit', '-1');
+require_once __DIR__ . '/../../../tests/utils.php';
 
-function showTs(float $ts): void
-{
-    print('ts: ' . str_replace('.', ',', (string)(microtime(true) - $ts)) . PHP_EOL);
-}
+$iterations = DEFAULT_TEST_ITERATIONS;
 
-$iterations = 50000000;
-
-$ts = microtime(true);
-for ($i = 0; $i < $iterations; $i++) {
-    try {
-        throw new Exception();
-    } catch (Throwable $exception) {
-        // do nothing
+runPerformanceTestOnlyTime(static function() use ($iterations) {
+    for ($i = 0; $i < $iterations; $i++) {
+        try {
+            throw new Exception();
+        } catch (Throwable $exception) {
+            // do nothing
+        }
     }
-}
-showTs($ts);
+});

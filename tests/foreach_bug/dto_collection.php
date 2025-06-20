@@ -1,13 +1,6 @@
 <?php
 
-ini_set('memory_limit', '-1');
-
-$iterations = 10000000;
-
-function showTs(float $ts): void
-{
-    print(' ts: ' . str_replace('.', ',', (string)(microtime(true) - $ts)) . PHP_EOL);
-}
+require_once __DIR__ . '/../utils.php';
 
 class TestDTO
 {
@@ -18,13 +11,13 @@ class TestDTO
 }
 
 $collection = [];
-for ($i = 0; $i < $iterations; $i++) {
+for ($i = 0; $i < DEFAULT_TEST_ITERATIONS; $i++) {
     $item = new TestDTO();
     $item->attr_int = $i;
     $collection[] = $item;
 }
 
-$ts = microtime(true);
-foreach ($collection as $item) {
-}
-showTs($ts);
+runPerformanceTestOnlyTime(static function() use ($collection) {
+    foreach ($collection as $item) {
+    }
+});
