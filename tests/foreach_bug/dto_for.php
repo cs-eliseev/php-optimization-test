@@ -11,7 +11,7 @@ class TestDTO
 }
 
 $collection = [];
-for ($i = 0; $i < DEFAULT_TEST_ITERATIONS; $i++) {
+for ($i = 0; $i < COUNT_500_MILLIONS; $i++) {
     $item = new TestDTO();
     $item->attr_int = $i;
     $collection[] = $item;

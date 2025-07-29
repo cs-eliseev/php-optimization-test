@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../../../tests/utils.php';
 
-$iterations = DEFAULT_TEST_ITERATIONS;
+$iterations = COUNT_500_MILLIONS;
 
 runPerformanceTestOnlyTime(static function() use ($iterations) {
     for ($i = 0; $i < $iterations; $i++) {

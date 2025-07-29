@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../utils.php';
 
 $collection = [];
-for ($i = 0; $i < DEFAULT_TEST_ITERATIONS; $i++) {
+for ($i = 0; $i < COUNT_500_MILLIONS; $i++) {
     $collection[] = ['test' => $i];
 }
 

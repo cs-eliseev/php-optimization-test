@@ -2,7 +2,7 @@
 
 require_once __DIR__.'/../../utils.php';
 
-$iterations = ARRAY_TEST_ITERATIONS;
+$iterations = COUNT_150_MILLIONS;
 
 runPerformanceTest(static function() use ($iterations) {
     echo memory_get_usage(true) . PHP_EOL;
