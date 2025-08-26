@@ -10,9 +10,19 @@ ini_set('memory_limit', '-1');
  */
 const COUNT_1_BILLION = 1000000000;
 const COUNT_500_MILLIONS = 500000000;
+const COUNT_250_MILLIONS = 250000000;
 const COUNT_150_MILLIONS = 150000000;
+const COUNT_100_MILLIONS = 100000000;
 const COUNT_50_MILLIONS = 50000000;
+const COUNT_10_MILLION = 10000000;
+const COUNT_5_MILLION = 5000000;
 const COUNT_1_MILLION = 1000000;
+const COUNT_500_THOUSAND = 500000;
+const COUNT_100_THOUSAND = 100000;
+const COUNT_50_THOUSAND = 50000;
+const COUNT_10_THOUSAND = 10000;
+const COUNT_5_THOUSAND = 5000;
+const COUNT_1_THOUSAND = 1000;
 
 const LABEL_MEMORY = 'memory';
 const LABEL_TIME = 'ts';
@@ -57,13 +67,26 @@ function byteToGb(int $bytes): float
  * Display data
  *
  * @param string $label
+ * @param string|int|float $data
+ *
+ * @return void
+ */
+function display(string $label, $data): void
+{
+    print("{$label}: {$data}" . PHP_EOL);
+}
+
+/**
+ * Display float data
+ *
+ * @param string $label
  * @param float $data
  *
  * @return void
  */
 function displayFloat(string $label, float $data): void
 {
-    print("{$label}: " . str_replace('.', ',', (string) $data) . PHP_EOL);
+    display($label, str_replace('.', ',', (string) $data));
 }
 
 /**
