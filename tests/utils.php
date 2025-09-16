@@ -14,6 +14,7 @@ const COUNT_250_MILLIONS = 250000000;
 const COUNT_150_MILLIONS = 150000000;
 const COUNT_100_MILLIONS = 100000000;
 const COUNT_50_MILLIONS = 50000000;
+const COUNT_20_MILLIONS = 20000000;
 const COUNT_10_MILLION = 10000000;
 const COUNT_5_MILLION = 5000000;
 const COUNT_1_MILLION = 1000000;
@@ -23,6 +24,7 @@ const COUNT_50_THOUSAND = 50000;
 const COUNT_10_THOUSAND = 10000;
 const COUNT_5_THOUSAND = 5000;
 const COUNT_1_THOUSAND = 1000;
+const COUNT_1 = 1;
 
 const LABEL_MEMORY = 'memory';
 const LABEL_TIME = 'ts';
@@ -94,10 +96,11 @@ function displayFloat(string $label, float $data): void
  * 
  * @param int $memory Initial memory usage
  * @param string $label Label
+ * @param int $average Display average
  */
-function showMemory(int $memory, string $label = LABEL_MEMORY): void
+function showMemory(int $memory, string $label = LABEL_MEMORY, int $average = COUNT_1): void
 {
-    displayFloat($label, byteToGb(memoryUsedSince($memory)));
+    displayFloat($label, byteToGb(memoryUsedSince($memory)) / $average);
 }
 
 /**
@@ -105,39 +108,58 @@ function showMemory(int $memory, string $label = LABEL_MEMORY): void
  * 
  * @param float $ts Initial timestamp
  * @param string $label Label
+ * @param int $average Display average
  */
-function showTs(float $ts, string $label = LABEL_TIME): void
+function showTs(float $ts, string $label = LABEL_TIME, int $average = COUNT_1): void
 {
-    displayFloat($label, timeSince($ts));
+    displayFloat($label, timeSince($ts) / $average);
 }
 
 /**
  * Run performance test with memory and time measurements
  * 
  * @param callable $testFunction Function to test
+ * @param int $average Display average
  */
-function runPerformanceTest(callable $testFunction): void
+function runPerformanceTest(callable $testFunction, int $average = COUNT_1): void
 {
     $memory = memory_get_peak_usage(true);
     $ts = microtime(true);
 
     $testFunction();
 
-    showTs($ts);
-    showMemory($memory);
+    showTs($ts, LABEL_TIME, $average);
+    showMemory($memory, LABEL_MEMORY, $average);
 }
 
 /**
  * Run performance test with time measurements
  * 
  * @param callable $testFunction Function to test
+ * @param int $average Display average
  */
-function runPerformanceTestOnlyTime(callable $testFunction): void
+function runPerformanceTestOnlyTime(callable $testFunction, int $average = COUNT_1): void
 {
     $ts = microtime(true);
     
     $testFunction();
-    
-    showTs($ts);
-} 
 
+    showTs($ts, LABEL_TIME, $average);
+}
+
+/**
+ * Run generate simple collection
+ *
+ * @param int $iterations Collection size
+ * @param mixed $value Item Collection value
+ *
+ * @return array
+ */
+function createCollectionByValue(int $iterations, $value = COUNT_1_BILLION): array
+{
+    $collection = [];
+    for ($i = 0; $i < $iterations; $i++) {
+        $collection[] = $value;
+    }
+    return $collection;
+}
