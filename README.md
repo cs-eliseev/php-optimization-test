@@ -7,7 +7,7 @@ This project contains a collection of PHP scripts designed to test and analyze p
 ## Features
 - Collection of performance test PHP scripts
 - Docker-based testing environment
-- Support for PHP versions from 7.4 to 8.4
+- Support for PHP versions from 7.4 to 8.5
 - Various test scenarios
 - Exporting results to various formats (CSV, Excel, JSON)
 
@@ -44,6 +44,7 @@ This will start containers for PHP versions:
 - PHP 8.2.12 (port 9025)
 - PHP 8.3 (port 9026)
 - PHP 8.4 (port 9027)
+- PHP 8.5 (port 9028)
 
 ### Run tests in a specific directory
 

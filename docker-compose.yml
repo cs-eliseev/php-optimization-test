@@ -54,3 +54,12 @@ services:
       - "9027:80"
     volumes:
       - ./tests:/var/www/html/tests
+
+  php8_5:
+    image: php:8.5-fpm
+    container_name: my-php8_5-container
+    working_dir: /var/www/html
+    ports:
+      - "9028:80"
+    volumes:
+      - ./tests:/var/www/html/tests
