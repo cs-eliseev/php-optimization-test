@@ -33,7 +33,8 @@ class TestRunner:
             ('8.1.25', 'my-php8_1-container'),
             ('8.2.12', 'my-php8_2-container'),
             ('8.3', 'my-php8_3-container'),
-            ('8.4', 'my-php8_4-container')
+            ('8.4', 'my-php8_4-container'),
+            ('8.5', 'my-php8_5-container')
         ]
         self.check_containers()
 
